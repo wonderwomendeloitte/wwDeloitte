@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="aboutUs"/>
+    
+    <script>
+    $Lightning.use("c:WW_HomeApp", function() {
+        $Lightning.createComponent("c:WW_AboutUs",
+                                   "",
+                                   "aboutUs",
+                                   function(cmp) {
+                                       console.log("component was created");
+                                       // do some stuff
+                                   }
+                                  );
+    });
+    </script>
+</apex:page>

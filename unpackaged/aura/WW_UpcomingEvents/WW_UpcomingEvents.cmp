@@ -1,0 +1,21 @@
+<aura:component controller="WW_EventsController">
+    <aura:attribute name="selectedEventId" type="String"/>
+    <aura:attribute name="upcomingEvents" type="List"/>
+    <aura:attribute name="bShowRegistrationModal" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+	<div class="upcomingEvents">
+        <aura:iteration items="{!v.upcomingEvents}" var="event">
+            <div class="slds-card eventsCard" data-id="{!event.Id}" onclick="{!c.registerPeople}">
+                <p class="eventName slds-p-bottom_x-small">{!event.Name}</p>
+                <p class="slds-p-bottom_x-small">
+                    <lightning:icon iconName="standard:date_input" size="small" variant="inverse"/>&nbsp; {!event.WW_Event_Date__c}
+                </p>
+                <p>
+                    <lightning:icon iconName="standard:location" size="small" variant="inverse"/>&nbsp; {!event.Address_1__c}, {!event.Address_2__c}, {!event.City__c}, {!event.State__c}
+                </p>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

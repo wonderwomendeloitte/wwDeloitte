@@ -1,0 +1,44 @@
+.THIS {
+    background: black;
+}
+.THIS .generalHeader{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.THIS .upcomingEvent,
+.THIS .registeredEvent{
+    padding: 2px;
+    background: linear-gradient(grey, black);
+}
+.THIS .upcomingEvent>div,
+.THIS .registeredEvent>div{
+    background: black;
+}
+.THIS .registeredEvent .slds-icon-standard-events,
+.THIS .upcomingEvent .slds-icon-standard-event{
+    background: none;
+}
+.THIS .registeredEvent .slds-icon-standard-events .slds-icon,
+.THIS .upcomingEvent .slds-icon-standard-event .slds-icon{
+    fill: white;
+}
+.THIS .eventsCard{
+    padding: 8px;
+    color: white;
+    background-image: linear-gradient(to right, grey, black);
+    border: 0;
+    box-shadow: 0 8px 16px 0 rgba(255,255,255,0.3);
+}
+.THIS .eventName{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.THIS .eventsCard .slds-icon{
+    fill: black;
+}
+.THIS .eventsCard .slds-icon-standard-date-input,
+.THIS .eventsCard .slds-icon-standard-location{
+  background: none;  
+}

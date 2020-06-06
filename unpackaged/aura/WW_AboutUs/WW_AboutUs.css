@@ -1,0 +1,11 @@
+.THIS {
+    background: black;
+}
+.THIS.aboutUs{
+    color: white;
+}
+.THIS .generalHeader{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

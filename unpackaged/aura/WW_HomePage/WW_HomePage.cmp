@@ -1,0 +1,144 @@
+<aura:component controller="WW_HomePageController">
+    <aura:attribute name="bShowVolunteerModal" type="Boolean" default="false"/>
+    <aura:attribute name="bShowRegistrationModal" type="Boolean" default="false"/>
+    <aura:attribute name="selectedEventId" type="String"/>
+    <aura:attribute name="lstContacts" type="Contact[]"/>
+    <aura:attribute name="objAccount" type="Account"/>
+    <aura:attribute name="objEmptyContact" type="Object"/>
+    <aura:attribute name="bDisableButton" type="Boolean" default="true"/>
+    <aura:attribute name="volunteerName" type="String"/>
+    <aura:attribute name="volunteerEmail" type="String"/>
+    <aura:attribute name="otp" type="String"/>
+    <aura:attribute name="state" type="String"/>
+    <aura:attribute name="stateMsg" type="String"/>
+    <aura:attribute name="showErrorSuccess" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="homePage">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-3 volunteerSection">
+                <div class="slds-p-around_medium slds-text-align_center">
+                    <p class="headingText">Are you a volunteer?</p>
+                    <p class="subText"><lightning:button variant="bare" label="Click here!" onclick="{!c.openVolunteerModal}"/>&nbsp;
+                        to <strong>Login</strong></p>
+                    <img src="{!$Resource.HomePageImages + '/Volunteer-Hands.jpg'}"/>
+                </div>
+            </div>
+            <div class="slds-size_1-of-3 registrationSection">
+                <div class="slds-p-around_medium slds-text-align_center">
+                    <p class="headingText">Do you know someone starving?</p>
+                    <p class="subText">Click on one of the upcoming events to feed the needful.</p>
+                    <img src="{!$Resource.HomePageImages + '/hungry-child.jpg'}"/>
+                </div>
+            </div>
+            <div class="slds-size_1-of-3 slds-p-around_medium eventsSection">
+                <div class="upcomingEvents slds-p-around_medium">
+                    <div class="slds-grid slds-p-bottom_medium slds-grid_vertical-align-center">
+                        <lightning:icon iconName="standard:event"/>
+                        <h2 class="slds-p-left_small generalHeader">UPCOMING EVENTS</h2>
+                    </div>
+                    <c:WW_UpcomingEvents bShowRegistrationModal="{!v.bShowRegistrationModal}" selectedEventId="{!v.selectedEventId}"/>
+                </div>
+            </div>
+        </div>
+        
+        <aura:if isTrue="{!v.bShowVolunteerModal}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-grid slds-grid_align-spread">
+                        <h2 id="modal-heading-01" class="slds-hyphenate generalHeader">Volunteer Verification</h2>
+                        <lightning:buttonIcon iconName="utility:close" aura:id="volunteer" 
+                                              variant="bare" size="medium" onclick="{!c.closeModal}"/>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_large" id="modal-content-id-1">
+                        <lightning:input label="Name" value="{!v.volunteerName}" name="accName" 
+                                         class="slds-p-bottom_small"
+                                         required="true" aura:id="inputField"/>
+                        <lightning:input type="email" required="true" label="Enter your email address" value="{!v.volunteerEmail}"/>
+                    <lightning:input label="OTP" value="{!v.otp}" name="otp" 
+                                         class="slds-p-bottom_small"
+                                         required="true" aura:id="inputField"/>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand" onclick="{!c.requestForOtp}">Request OTP</lightning:button>
+                        <lightning:button variant="brand" onclick="{!c.userLogin}">Login OTP</lightning:button>
+                        <lightning:button variant="neutral" aura:id="volunteer" onclick="{!c.closeModal}">Cancel</lightning:button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.bShowRegistrationModal}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-grid slds-grid_align-spread">
+                        <h2 id="modal-heading-01" class="slds-hyphenate generalHeader">Registration</h2>
+                        <lightning:buttonIcon iconName="utility:close" aura:id="registration" 
+                                              variant="bare" size="medium" onclick="{!c.closeModal}"/>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_large" id="modal-content-id-1">
+                            <div class="slds-grid">
+                                <div class="slds-size_1-of-2 slds-p-right_x-small">
+                                    <lightning:input label="Name" value="{!v.objAccount.Name}" name="accName" 
+                                                     class="slds-p-bottom_small"
+                                                     required="true" aura:id="inputField"/>
+                                    <lightning:input label="Number of people" type="number" name="noOfPeople"
+                                                     value="{!v.objAccount.WW_Number_of_People__c}" onchange="{!c.disableButton}" class="slds-p-bottom_small"
+                                                     required="true" aura:id="inputField"/>
+                                </div>
+                                <div class="slds-size_1-of-2 slds-p-left_x-small">
+                                    <lightning:input label="Email Address" type="email" name="accEmail"
+                                                     value="{!v.objAccount.WW_Email__c}" class="slds-p-bottom_small"
+                                                     required="true" aura:id="inputField"/>
+                                </div>
+                            </div> 
+                        
+                        <lightning:button label="Add a Person" variant="brand"
+                                          disabled="{!v.bDisableButton}"
+                                          onclick="{!c.addRow}"/>
+                        <aura:iteration items="{!v.lstContacts}" var="con">
+                            <div class="slds-grid slds-p-bottom_small">
+                                <lightning:input class="slds-size-1-of-3 slds-p-horizontal_xx-small" 
+                                                 label="First Name" required="true" value="{!con.LastName}"/>
+                                <lightning:input class="slds-size_1-of-3 slds-p-horizontal_xx-small" 
+                                                 label="Age" required="true" value="{!con.WW_Age__c}"/>
+                                <lightning:input class="slds-size_1-of-3 slds-p-horizontal_xx-small" type="tel" 
+                                                 label="Phone" required="true" value="{!con.Phone}"/>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand" onclick="{!c.saveRegistrationData}">Save</lightning:button>
+                        <lightning:button variant="neutral" aura:id="registration" onclick="{!c.closeModal}">Cancel</lightning:button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <aura:if isTrue="{!v.showErrorSuccess}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" 
+                     class="errorSuccessModal slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="{! (v.state == 'error' ? 'errorClass ' : 'successClass ') +  'slds-modal__content slds-p-around_large slds-grid slds-grid_vertical-align-center slds-grid_align-spread'}" 
+                         id="modal-content-id-1"> 
+                        <p>{!v.stateMsg}</p>
+                        <lightning:buttonIcon iconName="utility:close" aura:id="errorSuccess" 
+                                              variant="bare" size="medium" onclick="{!c.closeModal}"/>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <div class="slds-p-around_medium slds-border_top">
+            <div style="color: white;">
+                <p class="slds-p-around_small">CONTACT US: <a style="color: #52b2bf;">feedtheneedy@helpinghands.com</a></p>
+                <a class="slds-p-around_small" style="color: #52b2bf;" 
+                   href="https://ww-deloitte-developer-edition.na135.force.com/WW_AboutUs?isdtp=vw">ABOUT US</a>
+            </div>
+        </div>
+    </div>
+</aura:component>

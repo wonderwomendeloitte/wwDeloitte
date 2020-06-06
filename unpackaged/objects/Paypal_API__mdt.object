@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Client_ID__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Client ID</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Client_Secret__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Client Secret</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Content_Type__c</fullName>
+        <defaultValue>&quot;application/x-www-form-urlencoded&quot;</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Content Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Method__c</fullName>
+        <defaultValue>&quot;POST&quot;</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Method</label>
+        <length>5</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Token_URL__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Token URL</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>grant_type__c</fullName>
+        <defaultValue>&quot;client_credentials&quot;</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>grant_type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Paypal API</label>
+    <pluralLabel>Paypal API</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,59 @@
+<aura:component implements="forceCommunity:availableForAllPagetypes" controller="WW_Carousel">
+    <aura:attribute name="orgBaseUrl" type="String"/>
+    <aura:attribute name="sOrgId" type="String"/>
+    <aura:attribute name="translateValue" type="Integer" default="0"/>
+    <aura:attribute name="sStaticResourceName" type="String" default="Slider_Images"/>
+    <aura:attribute name="duration" type="Integer" default="3000"/>
+    <aura:attribute name="buttonName" type="String" default="Learn More"/>
+    <aura:attribute name="sFolderName" type="String" default="Carousel"/>
+    <aura:attribute name="transValue" type="String" default="translateX(0%)"/>
+    
+    <aura:attribute name="lstImageDetails" type="List"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:html tag="style">
+       :root {
+           --box-change: {!v.transValue};
+       }
+   </aura:html>
+    
+    <div class="slds-carousel">
+        <div class="slds-carousel__stage">
+            <div class="slds-carousel__panels custom-transform">
+                <aura:iteration items="{!v.lstImageDetails}" var="image">
+                    <div id="content-id-01" class="slds-carousel__panel" role="tabpanel" aria-hidden="false" aria-labelledby="indicator-id-01">
+                        <a href="javascript:void(0);" class="slds-carousel__panel-action slds-text-link_reset" tabindex="0">
+                            <div class="slds-carousel__image slds-align_absolute-center">
+                                <img src="{!(v.orgBaseUrl + '/servlet/servlet.ImageServer?id='+ image.sId+'&amp;oid='+v.sOrgId)}" 
+                                     alternateText="TestImage" 
+                                     class="sliderSize"/>
+                            </div>
+                        </a>
+                    </div>
+                </aura:iteration>
+            </div>
+            <aura:iteration items="{!v.lstImageDetails}" var="imageText" indexVar="index">
+                <aura:if isTrue="{! (v.translateValue == mult(index,-100))}">
+                    <div class="overlaySlider slds-align_absolute-center slds-p-left_large">
+                        <h2 class="re-titleSize slds-p-vertical_small">{!imageText.sName}</h2>
+                        <p class="slideText"><aura:unescapedHtml value="{!imageText.sDescription}"/></p>
+                        <aura:if isTrue="{!imageText.sLink != null}">
+                            <lightning:button name="{!imageText.sLink}" aura:id="learnMore" variant="brand" label="{!v.buttonName}"
+                                              title="{!v.buttonName}" onclick="{!c.goToLink}" class="align-right"/>
+                        </aura:if>
+                    </div>
+                </aura:if>
+            </aura:iteration>
+            <ul class="slds-carousel__indicators" role="tablist">
+                <aura:iteration items="{!v.lstImageDetails}" var="i" indexVar="index">
+                    <li class="slds-carousel__indicator" role="presentation" id="{!index}" onclick="{!c.changeImage}">
+                        <lightning:button name="{! mult(index,-100)}" 
+                                         class="{!(v.translateValue == mult(index,-100)) ? 'slds-carousel__indicator-action  slds-is-active' : 'slds-carousel__indicator-action'}" 
+                                         aura:id="slideIndicator"/>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+    </div>
+</aura:component>

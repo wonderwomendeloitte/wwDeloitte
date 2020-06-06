@@ -1,0 +1,42 @@
+<aura:component controller="WW_EventsController">
+    <aura:attribute name="lstRegisteredEvents" type="List"/>
+    <aura:attribute name="lstUpcomingEvents" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-grid">
+        <div class="slds-size_1-of-2 registeredEvent">
+            <div class="slds-p-around_medium">
+                <h2 class="slds-m-bottom_medium generalHeader"><lightning:icon iconName="standard:events"/>
+                    REGISTERED EVENTS</h2>
+                <aura:iteration items="{!v.lstRegisteredEvents}" var="registeredEvent">
+                    <div class="slds-card eventsCard">
+                        <p class="eventName slds-p-bottom_x-small">{!registeredEvent.Name}</p>
+                        <p class="slds-p-bottom_x-small">
+                            <lightning:icon iconName="standard:date_input" size="small" variant="inverse"/>&nbsp; {!registeredEvent.WW_Event_Date__c}
+                        </p>
+                        <p>
+                            <lightning:icon iconName="standard:location" size="small" variant="inverse"/>&nbsp; {!registeredEvent.Address_1__c}, {!registeredEvent.Address_2__c}, {!registeredEvent.City__c}, {!registeredEvent.State__c}
+                        </p>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+        <div class="slds-size_1-of-2 upcomingEvent">
+            <div class="slds-p-around_medium">
+                <h2 class="slds-m-bottom_medium generalHeader"><lightning:icon iconName="standard:event"/>
+                    UPCOMING EVENTS</h2>
+                <aura:iteration items="{!v.lstUpcomingEvents}" var="upcomingEvent">
+                    <div class="slds-card eventsCard">
+                        <p class="eventName slds-p-bottom_x-small">{!upcomingEvent.Name}</p>
+                        <p class="slds-p-bottom_x-small">
+                            <lightning:icon iconName="standard:date_input" size="small" variant="inverse"/>&nbsp; {!upcomingEvent.WW_Event_Date__c}
+                        </p>
+                        <p>
+                            <lightning:icon iconName="standard:location" size="small" variant="inverse"/>&nbsp; {!upcomingEvent.Address_1__c}, {!upcomingEvent.Address_2__c}, {!upcomingEvent.City__c}, {!upcomingEvent.State__c}
+                        </p>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+    </div>
+</aura:component>

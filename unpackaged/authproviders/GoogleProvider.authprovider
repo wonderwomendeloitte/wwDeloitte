@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <executionUser>msriramula@deloitte.com.wit</executionUser>
+    <friendlyName>Google</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>Google</providerType>
+    <registrationHandler>AutocreatedRegHandler1591269372283</registrationHandler>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+</AuthProvider>

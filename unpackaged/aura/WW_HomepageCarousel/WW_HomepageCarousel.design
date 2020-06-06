@@ -1,0 +1,4 @@
+<design:component>    
+    <design:attribute name="buttonName" label="Button Name"/>
+    <design:attribute name="duration" label="Duration in milliseconds"/>
+</design:component>

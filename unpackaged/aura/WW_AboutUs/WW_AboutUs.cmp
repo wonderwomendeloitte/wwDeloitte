@@ -1,0 +1,8 @@
+<aura:component >
+	<div class="slds-p-around_medium aboutUs">
+        <h2 class="slds-p-bottom_medium generalHeader">ABOUT US: </h2>
+        <p class="slds-p-bottom_small"> HelpingHands is an online crowdfunding platform that enables anyone across India to raise funds/feed needy people with great ease. </p>
+        <p class="slds-p-bottom_small">People can volunteer for various activities as well for feeding the needy people like distribution, cooking etc.</p>
+        <p>This is developed in the food crisis came due to Covid-19 spread. But the overall idea is to feed as many people as we can in the long run. </p>
+    </div>
+    </aura:component>

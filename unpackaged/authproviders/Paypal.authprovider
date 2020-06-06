@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://api.sandbox.paypal.com/v1/oauth2/authorize</authorizeUrl>
+    <consumerKey>AazDihQdCs_rSqKqOUv0BRav71gW8h8XhGrrN7zC416o1enfK0J-ciatPGZzTRkQuLxyCdaNFFlVzy1a</consumerKey>
+    <consumerSecret>kRiMJBY0fNKgrEdBcYt6HPnmHiIIyxvv8/UHj7uj86xyFjEprDePFuPaQLRY++hcwB0/UtSJEJSBwzQgygv333j7RfY7yNyvDfYIpwVam7twQRj3Ygtq1w==</consumerSecret>
+    <friendlyName>Paypal</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://api.sandbox.paypal.com/v1/oauth2/token</tokenUrl>
+</AuthProvider>

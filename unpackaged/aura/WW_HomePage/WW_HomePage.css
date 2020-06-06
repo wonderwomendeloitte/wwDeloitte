@@ -1,0 +1,101 @@
+.THIS{
+    background: black;
+}
+.THIS .errorSuccessModal.slds-modal{
+    position: absolute;
+    bottom: 30rem;
+}
+.THIS .errorSuccessModal .slds-modal__container{
+    padding: 0;
+}
+.THIS .errorSuccessModal .slds-button__icon{
+    fill: white;
+}
+.THIS .successClass{
+    background: #04844B;
+    color: white;
+}
+.THIS .errorClass{
+    background: #c23934;
+    color: white;
+}
+.THIS .headingText{
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+.THIS .subText{
+    color: white;
+    font-size: 16px;
+}
+.THIS .subText .slds-button{
+    color: #52b2bf;
+}
+.THIS .volunteerSection,
+.THIS .registrationSection,
+.THIS .eventsSection{
+    padding: 2px;
+    background: linear-gradient(grey, black);
+}
+.THIS .volunteerSection img,
+.THIS .registrationSection img{
+    height: 14rem;
+    width: 100%;
+}
+.THIS .volunteerSection>div,
+.THIS .registrationSection>div,
+.THIS .eventsSection>div{
+    overflow-y: auto;
+    height:20rem;
+    background: black;
+}
+.THIS .eventsSection>div::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+.THIS .eventsSection>div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.THIS .eventsSection>div::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.THIS .generalHeader{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.THIS .slds-modal .generalHeader{
+    color: black;
+}
+.THIS .upcomingEvents .slds-icon-standard-event{
+    background: none;
+}
+.THIS .upcomingEvents .slds-icon-standard-event .slds-icon{
+    fill: white;
+}
+
+.THIS .slds-button{
+    border-radius: 0;
+    height: 36px;
+}
+.THIS .slds-button_brand{
+    background-color: #19497B;
+    border-color: #19497B;
+    border-radius: 0;
+}
+.THIS .slds-button_neutral{
+    background-color: #ffffff;
+    border-color: #19497B;
+    color: #19497B;
+}
+.THIS .slds-button_neutral:hover{
+    color: #19497B;
+}
+
+/* Input Fields */
+.THIS.homePage .slds-input{
+    border-radius: 0;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2); 
+}

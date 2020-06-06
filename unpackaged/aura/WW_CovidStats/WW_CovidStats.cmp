@@ -1,0 +1,37 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" access="global" controller="WW_CovidStats"> >
+    <aura:attribute name="wrapperList" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    {!v.wrapperList}
+    <div class="slds-p-around--large">
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-title--caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="total_recovered">total_recovered</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="total_deaths">total_deaths</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="country">country</div>
+                    </th>       
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.wrapperList}" var="con">
+                    <tr>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.total_recovered}">{!con.FirstName}</div>
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.total_deaths}">{!con.total_deaths}</div>
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.country}">{!con.country}</div>
+                        </th>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>

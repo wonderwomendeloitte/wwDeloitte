@@ -1,0 +1,27 @@
+<apex:page standardController="WW_EventDetails__c" extensions="WW_StartPaymentController">
+
+<script>
+  function showPayment(){
+      var x = document.getElementById('payment');
+        x.style.display = 'block';
+  }
+    
+</script>
+<style>
+    #payment {display:none;}
+</style>
+<apex:form >
+<apex:pageBlock >
+
+       <apex:commandButton value="Make a Donation" onclick="showPayment()" oncomplete="return null;"/>
+       <br/>
+       
+       <div id="payment">
+       Amount
+       <apex:inputField value="{!WW_EventDetails__c.WW_Amount__c}" label="Amount"/>
+       <apex:commandButton value="Start Payment" action="{!makePayment}"/>
+       </div>
+
+   </apex:pageBlock>
+   </apex:form>
+</apex:page>
